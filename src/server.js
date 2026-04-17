@@ -8,15 +8,14 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
-app.use('/api/exemplos', apiKey, exemplosRoutes);
-app.use('/api/arquivos', apiKey, arquivoRoutes);
 
 app.get('/', (req, res) => {
     res.send('🚀 API funcionando');
 });
 
 // Rotas
-app.use('/api/exemplos', exemplosRoutes);
+app.use('/api/exemplos', apiKey, exemplosRoutes);
+app.use('/api/arquivos', apiKey, arquivoRoutes);
 
 app.use((req, res) => {
     res.status(404).json({ error: 'Rota não encontrada' });
